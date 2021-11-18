@@ -14,52 +14,58 @@
             <span id="moc">1</span><br/>
 
             <br/><span id="sklep">SKLEP</span><br/>
-            <button id="ulepszenie">ULEPSZ MOC</button>
+            <button id="ulepszenieMoc">ULEPSZ MOC</button>
             <span>Cena:</span>
-            <span id="cenaUlepszeniaTekst">10</span><br/>
-            <span id="wymaganie">Najpierw wmagane jest przynajmniej 20 punktów.</span><br/>
+            <span id="cenaUlepszeniaMocTekst">10</span><br/>
+            <span id="wymaganieMoc">Najpierw wymagane jest 20 punktów.</span><br/>
 
-            <br/><span id="farma">FARMA</span>
+            <br/><span id="farma">FARMA</span><br/>
+            <button id="ulepszenieFarmaPr">ULEPSZ</button>
             <span>Prędkość: </span>
-            <span id="predkosc">1</span>
+            <span id="predkosc">1000</span> ms<br/>
+            <button id="ulepszenieFarmaSi">ULEPSZ</button>
+
             <span>Siła: </span>
-            <span id="sila">0</span>
+            <span id="sila">0</span><br/>
+            <span id="wymaganieFarma">Najpierw wymagane 50 punktów.</span>
 
         </b>
         <script>
 
             var przycisk = document.getElementById("przycisk");
             var punkty = document.getElementById("punkty");
-            var ulepszenie = document.getElementById("ulepszenie");
-            var cenaUlepszeniaTekst = document.getElementById("cenaUlepszeniaTekst");
+            var ulepszenieMoc = document.getElementById("ulepszenieMoc");
+            var cenaUlepszeniaMocTekst = document.getElementById("cenaUlepszeniaMocTekst");
             var moc = document.getElementById("moc");
-            var wymaganie = document.getElementById("wymaganie");
-            var cenaUlepszenia = 10;
+            var wymaganieMoc = document.getElementById("wymaganieMoc");
+            var cenaUlepszeniaMoc = 10;
             var iloscPunktow = 0;
             var iloscMocy = 1;
 
             przycisk.onclick = function(){
                 iloscPunktow = iloscPunktow + iloscMocy
                 punkty.innerHTML = iloscPunktow                     
-                console.log("Moc="+iloscMocy+" Punkty="+iloscPunktow+" Cena ulepszen="+cenaUlepszenia)
+                console.log("Moc="+iloscMocy+" Punkty="+iloscPunktow+" Cena ulepszen="+cenaUlepszeniaMoc)
             }
 
-            ulepszenie.onclick = function(){
-                if(iloscPunktow>=cenaUlepszenia && iloscPunktow >= 20 && iloscMocy < 5){
-                    iloscPunktow = iloscPunktow-cenaUlepszenia;     //odejmuje punkty
+            ulepszenieMoc.onclick = function(){
+                if(iloscPunktow>=cenaUlepszeniaMoc && iloscPunktow >= 20 && iloscMocy < 5){
+                    iloscPunktow = iloscPunktow-cenaUlepszeniaMoc;     //odejmuje punkty
                     punkty.innerHTML = iloscPunktow;                //zapisuje punkty
                     iloscMocy = iloscMocy+1;                        //dodaje moc
                     moc.innerHTML = iloscMocy;                      //zapisuje moc
-                    cenaUlepszenia = cenaUlepszenia*2               //zwieksza cene ulepszenia
-                    cenaUlepszeniaTekst.innerHTML = cenaUlepszenia  //zapisuje cene ulepszenia
-                    wymaganie.innerHTML = ""                        //usuwa tekst z wymaganiem
-                } else if(iloscPunktow<cenaUlepszenia || iloscPunktow < 20){
+                    cenaUlepszeniaMoc = cenaUlepszeniaMoc*2               //zwieksza cene ulepszenia
+                    cenaUlepszeniaMocTekst.innerHTML = cenaUlepszeniaMoc  //zapisuje cene ulepszenia
+                    wymaganieMoc.innerHTML = ""                        //usuwa tekst z wymaganiem
+                } else if(iloscPunktow<cenaUlepszeniaMoc || iloscPunktow < 20){
                     alert("ZA MAŁO PUNKTÓW")
                 } else if(iloscMocy == 5){
                     alert("ZA DUŻA MOC")
                     moc.innerHTML = "5 (MAX)"
                 }
             }
+
+
 
         </script>
     </body>
