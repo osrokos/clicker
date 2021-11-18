@@ -38,6 +38,14 @@
             var cenaUlepszeniaMocTekst = document.getElementById("cenaUlepszeniaMocTekst");
             var moc = document.getElementById("moc");
             var wymaganieMoc = document.getElementById("wymaganieMoc");
+            var ulepszenieFarmaPr = document.getElementById("ulepszenieFarmaPr");
+            var ulepszenieFarmaSi = document.getElementById("ulepszenieFarmaSi");
+            var wymaganieFarma = document.getElementById("wymaganieFarma");
+            
+            var farmaPrCena = 25;
+            var farmaSiCena = 25;
+            var farmaPr = 1000;
+            var farmaSi = 0;
             var cenaUlepszeniaMoc = 10;
             var iloscPunktow = 0;
             var iloscMocy = 1;
@@ -65,7 +73,11 @@
                 }
             }
 
-
+            ulepszenieFarmaPr.onclick = function(){
+                if(iloscPunktow>farmaPrCena && iloscPunktow > 50){
+                    
+                }
+            }
 
         </script>
     </body>
