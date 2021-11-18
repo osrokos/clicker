@@ -1,0 +1,66 @@
+<html>
+    <head>
+        <title>Clicker</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <b>
+            <span id="tytul">PUNKTY</span><br/>
+            <span>Ilość punktów:</span>
+            <span id="punkty">0</span><br/>
+
+            <button id="przycisk">KLIKAJ!</button>
+            <span>Moc kliknięć:</span>
+            <span id="moc">1</span><br/>
+
+            <br/><span id="sklep">SKLEP</span><br/>
+            <button id="ulepszenie">ULEPSZ MOC</button>
+            <span>Cena:</span>
+            <span id="cenaUlepszeniaTekst">10</span><br/>
+            <span id="wymaganie">Najpierw wmagane jest przynajmniej 20 punktów.</span><br/>
+
+            <br/><span id="farma">FARMA</span>
+            <span>Prędkość: </span>
+            <span id="predkosc">1</span>
+            <span>Siła: </span>
+            <span id="sila">0</span>
+
+        </b>
+        <script>
+
+            var przycisk = document.getElementById("przycisk");
+            var punkty = document.getElementById("punkty");
+            var ulepszenie = document.getElementById("ulepszenie");
+            var cenaUlepszeniaTekst = document.getElementById("cenaUlepszeniaTekst");
+            var moc = document.getElementById("moc");
+            var wymaganie = document.getElementById("wymaganie");
+            var cenaUlepszenia = 10;
+            var iloscPunktow = 0;
+            var iloscMocy = 1;
+
+            przycisk.onclick = function(){
+                iloscPunktow = iloscPunktow + iloscMocy
+                punkty.innerHTML = iloscPunktow                     
+                console.log("Moc="+iloscMocy+" Punkty="+iloscPunktow+" Cena ulepszen="+cenaUlepszenia)
+            }
+
+            ulepszenie.onclick = function(){
+                if(iloscPunktow>=cenaUlepszenia && iloscPunktow >= 20 && iloscMocy < 5){
+                    iloscPunktow = iloscPunktow-cenaUlepszenia;     //odejmuje punkty
+                    punkty.innerHTML = iloscPunktow;                //zapisuje punkty
+                    iloscMocy = iloscMocy+1;                        //dodaje moc
+                    moc.innerHTML = iloscMocy;                      //zapisuje moc
+                    cenaUlepszenia = cenaUlepszenia*2               //zwieksza cene ulepszenia
+                    cenaUlepszeniaTekst.innerHTML = cenaUlepszenia  //zapisuje cene ulepszenia
+                    wymaganie.innerHTML = ""                        //usuwa tekst z wymaganiem
+                } else if(iloscPunktow<cenaUlepszenia || iloscPunktow < 20){
+                    alert("ZA MAŁO PUNKTÓW")
+                } else if(iloscMocy == 5){
+                    alert("ZA DUŻA MOC")
+                    moc.innerHTML = "5 (MAX)"
+                }
+            }
+
+        </script>
+    </body>
+</html>

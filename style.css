@@ -1,0 +1,32 @@
+html{
+    font-family:'Segoe UI';
+}
+body{
+    background-color: rgb(20,20,20);
+    color: rgb(215,215,215);
+    text-align: center;
+    margin-top:15%;
+    font-size: 200%;
+}
+button{
+    font-size:75%;
+    font-family:fantasy;
+    color:rgb(215, 215, 215);
+    background-color:rgb(80, 80, 80);
+}
+button:hover{
+    color:rgb(160,160,160);
+    background-color: rgb(25,25,25)
+}
+#sklep{
+    color:rgb(253, 230, 99);
+    font-size:150%;
+}
+#tytul{
+    color:rgb(84, 146, 146);
+    font-size:150%;
+}
+#farma{
+    color:rgb(98, 146, 84);
+    font-size:150%;
+}
