@@ -2,13 +2,20 @@ html{
     font-family:'Segoe UI';
 }
 body{
-    background-color: rgb(20,20,20);
+    background: linear-gradient(90deg, rgba(49,22,66,1) 0%, rgba(75,17,17,1) 50%, rgba(91,64,26,1) 100%);
     color: rgb(215,215,215);
     text-align: center;
-    margin-top:15%;
     font-size: 200%;
+    text-shadow: 0px 0px 25px rgb(25,25,25);
 }
 button{
+    font-size:75%;
+    font-family:fantasy;
+    color:rgb(215, 215, 215);
+    background-color:rgb(80, 80, 80);
+    transition: 0.1s all;
+}
+input{
     font-size:75%;
     font-family:fantasy;
     color:rgb(215, 215, 215);
@@ -17,6 +24,26 @@ button{
 button:hover{
     color:rgb(160,160,160);
     background-color: rgb(25,25,25)
+}
+#przycisk:active{
+    color:rgb(84, 146, 146);
+    background-color: rgb(26, 25, 63);
+    transform: scale(1.125);
+}
+#ulepszenieMoc:active{
+    color: rgb(236, 251, 168);
+    background-color: rgb(161, 159, 40);
+    transform: scale(1.125);
+}
+#ulepszenieFarma:active{
+    color: rgb(98, 146, 84);
+    background-color: rgb(27, 46, 21);
+    transform: scale(1.125);
+}
+#losuj:active{
+    color:  rgb(168, 93, 93);
+    background-color: rgb(46, 21, 21);
+    transform: scale(1.125);
 }
 #sklep{
     color:rgb(253, 230, 99);
@@ -28,5 +55,9 @@ button:hover{
 }
 #farma{
     color:rgb(98, 146, 84);
+    font-size:150%;
+}
+#losowanie{
+    color:rgb(146, 84, 84);
     font-size:150%;
 }

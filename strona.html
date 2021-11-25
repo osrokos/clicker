@@ -20,14 +20,18 @@
             <span id="wymaganieMoc">Najpierw wymagane jest 20 punktów.</span><br/>
 
             <br/><span id="farma">FARMA</span><br/>
-            <button id="ulepszenieFarmaPr">ULEPSZ</button>
-            <span>Prędkość: </span>
-            <span id="predkosc">1000</span> ms<br/>
-            <button id="ulepszenieFarmaSi">ULEPSZ</button>
-
+            <button id="ulepszenieFarma">ULEPSZ</button>
             <span>Siła: </span>
             <span id="sila">0</span><br/>
-            <span id="wymaganieFarma">Najpierw wymagane 50 punktów.</span>
+            <span>Cena:</span>
+            <span id="cenaFarma">25</span><br/>
+            <span id="wymaganieFarma">Najpierw wymagane jest 50 punktów.</span><br/>
+            
+            <br/><span id="losowanie">LOSOWANIE</span><br/>
+            <button id="losuj">LOSUJ</button>
+            <input type=number id="budzet" placeholder="ILOSC PUNKTOW"><br/>
+            <span id="losowanieStatus"></span><br/>
+            <span>Do losowania zawsze wymagane jest przynajmniej 100 punktów.</span>
 
         </b>
         <script>
@@ -38,47 +42,80 @@
             var cenaUlepszeniaMocTekst = document.getElementById("cenaUlepszeniaMocTekst");
             var moc = document.getElementById("moc");
             var wymaganieMoc = document.getElementById("wymaganieMoc");
-            var ulepszenieFarmaPr = document.getElementById("ulepszenieFarmaPr");
-            var ulepszenieFarmaSi = document.getElementById("ulepszenieFarmaSi");
+            var ulepszenieFarma = document.getElementById("ulepszenieFarma");
+            var cenaFarma = document.getElementById("cenaFarma");
             var wymaganieFarma = document.getElementById("wymaganieFarma");
+            var sila = document.getElementById("sila");
+            var losuj = document.getElementById("losuj");
+            var budzet = document.getElementById("budzet");
+            var losowanieStatus = document.getElementById("losowanieStatus");
             
-            var farmaPrCena = 25;
-            var farmaSiCena = 25;
-            var farmaPr = 1000;
-            var farmaSi = 0;
+            var farmaCena = 25;
+            var farmaSila = 0;
             var cenaUlepszeniaMoc = 10;
             var iloscPunktow = 0;
             var iloscMocy = 1;
 
             przycisk.onclick = function(){
                 iloscPunktow = iloscPunktow + iloscMocy
-                punkty.innerHTML = iloscPunktow                     
-                console.log("Moc="+iloscMocy+" Punkty="+iloscPunktow+" Cena ulepszen="+cenaUlepszeniaMoc)
+                punkty.innerHTML = iloscPunktow      
+                
+                //console.log("Moc="+iloscMocy+" Punkty="+iloscPunktow+" Cena ulepszen="+cenaUlepszeniaMoc+" Sila farmy="+farmaSila+" Cena farmy="+farmaCena)
             }
 
             ulepszenieMoc.onclick = function(){
-                if(iloscPunktow>=cenaUlepszeniaMoc && iloscPunktow >= 20 && iloscMocy < 5){
-                    iloscPunktow = iloscPunktow-cenaUlepszeniaMoc;     //odejmuje punkty
-                    punkty.innerHTML = iloscPunktow;                //zapisuje punkty
-                    iloscMocy = iloscMocy+1;                        //dodaje moc
-                    moc.innerHTML = iloscMocy;                      //zapisuje moc
-                    cenaUlepszeniaMoc = cenaUlepszeniaMoc*2               //zwieksza cene ulepszenia
-                    cenaUlepszeniaMocTekst.innerHTML = cenaUlepszeniaMoc  //zapisuje cene ulepszenia
-                    wymaganieMoc.innerHTML = ""                        //usuwa tekst z wymaganiem
+                if(iloscPunktow>=cenaUlepszeniaMoc && iloscPunktow >= 20 && iloscMocy < 10){
+                    iloscPunktow = iloscPunktow-cenaUlepszeniaMoc;         //odejmuje punkty
+                    punkty.innerHTML = iloscPunktow;                       //zapisuje punkty
+                    iloscMocy = iloscMocy+1;                               //dodaje moc
+                    moc.innerHTML = iloscMocy;                             //zapisuje moc
+                    cenaUlepszeniaMoc = cenaUlepszeniaMoc*2                //zwieksza cene ulepszenia
+                    cenaUlepszeniaMocTekst.innerHTML = cenaUlepszeniaMoc   //zapisuje cene ulepszenia
+                    wymaganieMoc.innerHTML = ""                            //usuwa tekst z wymaganiem
                 } else if(iloscPunktow<cenaUlepszeniaMoc || iloscPunktow < 20){
                     alert("ZA MAŁO PUNKTÓW")
-                } else if(iloscMocy == 5){
+                } else if(iloscMocy == 10){
                     alert("ZA DUŻA MOC")
-                    moc.innerHTML = "5 (MAX)"
+                    moc.innerHTML = "10 (MAX)"
                 }
             }
 
-            ulepszenieFarmaPr.onclick = function(){
-                if(iloscPunktow>farmaPrCena && iloscPunktow > 50){
-                    
+            ulepszenieFarma.onclick = function(){
+                if(iloscPunktow>farmaCena && iloscPunktow >= 50){
+                    iloscPunktow = iloscPunktow - farmaCena     //odejmowanie ceny z "portfela"
+                    farmaSila = farmaSila+3*(farmaSila+1)       //więcej siły na wyższym poziomie
+                    farmaCena = farmaCena*5                     //większa cena na wyższym poziomie
+                    wymaganieFarma.innerHTML = ""               //usuwa wymaganie
+                    sila.innerHTML = farmaSila                  //zapisuje siłe
+                    cenaFarma.innerHTML = farmaCena             //zapisuje cene
+                } else {
+                    alert("ZA MAŁO PUNKTÓW")
+                }
+            }
+            
+            losuj.onclick = function(){
+                if(iloscPunktow>=budzet.value && iloscPunktow >= 100 && budzet.value >= 100){
+                    var szansa = Math.random()*2
+                    iloscPunktow -= budzet.value
+                    console.log(iloscPunktow+"   "+budzet.value+"   "+szansa)
+                    if(szansa>1){
+                        wygrana = Math.floor(budzet.value*szansa)
+                        iloscPunktow += wygrana
+                        losowanieStatus.innerHTML = "WYGRAŁEŚ "+(wygrana-budzet.value)+" PUNKTÓW!"
+                    } else {
+                        przegrana = Math.floor(budzet.value*szansa)
+                        iloscPunktow += przegrana
+                        losowanieStatus.innerHTML = "PRZEGRAŁEŚ "+((przegrana-budzet.value)*-1)+" PUNKTÓW!"
+                    }punkty.innerHTML = iloscPunktow
+                } else {
+                    alert("ZA MAŁO PUNKTÓW")
                 }
             }
 
+            window.setInterval(function farmienie(){
+                iloscPunktow = iloscPunktow+farmaSila;
+                punkty.innerHTML = iloscPunktow;
+            },1000)
         </script>
     </body>
 </html>
