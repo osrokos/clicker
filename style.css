@@ -45,19 +45,47 @@ button:hover{
     background-color: rgb(46, 21, 21);
     transform: scale(1.125);
 }
+@keyframes animSklep{
+    0% {color:rgb(253, 230, 99)}
+    50% {color: rgb(226, 199, 42)}
+    100% {color:rgb(253, 230, 99)}
+}
 #sklep{
-    color:rgb(253, 230, 99);
+    animation-name: animSklep;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
     font-size:150%;
+}
+@keyframes animTytul{
+    0% {color:rgb(84, 146, 146);}
+    50% {color: rgb(73, 196, 226);}
+    100% {color:rgb(84, 146, 146);}
 }
 #tytul{
-    color:rgb(84, 146, 146);
+    animation-name: animTytul;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
     font-size:150%;
+}
+@keyframes animFarma{
+    0% {color:rgb(98, 146, 84);}
+    50% {color: rgb(73, 226, 81);}
+    100% {color:rgb(98, 146, 84);}
 }
 #farma{
-    color:rgb(98, 146, 84);
+    animation-name: animFarma;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
     font-size:150%;
 }
+@keyframes animLos{
+    0% {color:rgb(146, 84, 84);}
+    50% {color: rgb(172, 47, 47);}
+    100% {color:rgb(146, 84, 84);}
+}
 #losowanie{
-    color:rgb(146, 84, 84);
+    animation-name: animLos;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
     font-size:150%;
 }
