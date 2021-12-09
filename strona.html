@@ -92,11 +92,11 @@
                     cenaUlepszeniaMoc = cenaUlepszeniaMoc*2                //zwieksza cene ulepszenia
                     cenaUlepszeniaMocTekst.innerHTML = cenaUlepszeniaMoc   //zapisuje cene ulepszenia
                     wymaganieMoc.innerHTML = ""                            //usuwa tekst z wymaganiem
-                } else if(iloscPunktow<cenaUlepszeniaMoc || iloscPunktow < 20){
-                    alert("ZA MAŁO PUNKTÓW")
                 } else if(iloscMocy == 10){
                     alert("ZA DUŻA MOC")
                     moc.innerHTML = "10 (MAX)"
+                } else if(iloscPunktow<cenaUlepszeniaMoc || iloscPunktow < 20){
+                    alert("ZA MAŁO PUNKTÓW")
                 }
             }
 
@@ -105,6 +105,7 @@
                     iloscPunktow = iloscPunktow - farmaCena     //odejmowanie ceny z "portfela"
                     farmaSila = farmaSila+3*(farmaSila+1)       //więcej siły na wyższym poziomie
                     farmaCena = farmaCena*5                     //większa cena na wyższym poziomie
+                    punkty.innerHTML = iloscPunktow             //zapisuje punkty
                     wymaganieFarma.innerHTML = ""               //usuwa wymaganie
                     sila.innerHTML = farmaSila                  //zapisuje siłe
                     cenaFarma.innerHTML = farmaCena             //zapisuje cene
