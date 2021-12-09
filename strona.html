@@ -18,7 +18,8 @@
             <span>Cena:</span>
             <span id="cenaUlepszeniaMocTekst">10</span><br/>
             <span id="wymaganieMoc">Najpierw wymagane jest 20 punktów.</span><br/>
-
+            
+            <div id="calaFarma" style="display: none;">
             <br/><span id="farma">FARMA</span><br/>
             <button id="ulepszenieFarma">ULEPSZ</button>
             <span>Siła: </span>
@@ -26,12 +27,17 @@
             <span>Cena:</span>
             <span id="cenaFarma">25</span><br/>
             <span id="wymaganieFarma">Najpierw wymagane jest 50 punktów.</span><br/>
-            
+            </div>
+
             <br/><span id="losowanie">LOSOWANIE</span><br/>
             <button id="losuj">LOSUJ</button>
             <input type=number id="budzet" placeholder="ILOSC PUNKTOW"><br/>
             <span id="losowanieStatus"></span><br/>
-            <span>Do losowania zawsze wymagane jest przynajmniej 100 punktów.</span>
+            <span>Do losowania zawsze wymagane jest przynajmniej 100 punktów.</span><br/>
+            
+            <br/><button id="bonusowy" style="display: none;">
+                BONUS 20 PKT
+            </button>
 
         </b>
         <script>
@@ -55,11 +61,25 @@
             var cenaUlepszeniaMoc = 10;
             var iloscPunktow = 0;
             var iloscMocy = 1;
+            var bylBonus = false;
+            var farmaOdblok = false;
 
             przycisk.onclick = function(){
-                iloscPunktow = iloscPunktow + iloscMocy
-                punkty.innerHTML = iloscPunktow      
                 
+                iloscPunktow = iloscPunktow + iloscMocy
+                punkty.innerHTML = iloscPunktow
+                if(iloscPunktow>=20 && bylBonus == false){               //pokazanie przycisku bonusowego
+                    var bonusowy = document.getElementById("bonusowy");
+                    bonusowy.style.display = "inline"
+                    bylBonus = true
+                }
+
+                if(iloscPunktow>=100 && farmaOdblok == false){               //pokazanie przycisku farmy
+                    var calaFarma = document.getElementById("calaFarma");
+                    calaFarma.style.display = "inline"
+                    farmaOdblok = true
+                }
+
                 //console.log("Moc="+iloscMocy+" Punkty="+iloscPunktow+" Cena ulepszen="+cenaUlepszeniaMoc+" Sila farmy="+farmaSila+" Cena farmy="+farmaCena)
             }
 
@@ -116,6 +136,24 @@
                 iloscPunktow = iloscPunktow+farmaSila;
                 punkty.innerHTML = iloscPunktow;
             },1000)
+
+            bonusowy.onclick = function(){
+                iloscPunktow = iloscPunktow + 20
+                punkty.innerHTML = iloscPunktow
+                bonusowy.style.display = "none"
+            }
+            /*
+            var losowyCzas = (75*Math.round(Math.random()+1))*(50*Math.round(Math.random()+1))
+            console.log(losowyCzas)
+            window.setInterval(function superBonus(){                
+                var sBonus = document.createElement("button");
+                console.log("dziala cos")
+                sBonus.onclick = function(){
+                    iloscPunktow = iloscPunktow + 1000;
+                    punkty.innerHTML = iloscPunktow;
+                    sBonus.remove();
+                }
+            },losowyCzas)*/
         </script>
     </body>
 </html>
